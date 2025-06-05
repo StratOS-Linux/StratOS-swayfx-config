@@ -9,6 +9,8 @@ include ~/.config/sway/execs.conf
 
 include ~/.config/sway/outputs
 include ~/.config/sway/workspaces
+
+include ~/.config/sway/decorations.conf
 # Set the default font
 font "Iosevka Nerd Font 12"
 
@@ -24,16 +26,4 @@ input "type:touchpad" {
     scroll_method two_finger
     pointer_accel 0.3
 }
-
-# Show a thin line around the windows
-default_border pixel 3
-
-# Gaps
-gaps inner 2
-gaps outer 5
-smart_gaps off
-
-# Set colors for client windows
-client.focused          $color2 $color6 $foreground $color6 
-
 include /etc/sway/config.d/*
