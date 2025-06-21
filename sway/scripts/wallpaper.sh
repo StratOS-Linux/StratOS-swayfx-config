@@ -20,12 +20,6 @@ if [ ! -f "$cache_file" ] ;then
 	ln -s "$HOME/hyprdots/wallpaper/default.jpg" "$HOME/.cache/wallpaper"
 fi
 
-# Create rasi file if not exists
-if [ ! -f "$rasi_file" ] ;then
-    touch "$rasi_file"
-    echo "* { current-image: url(\"$HOME/hyprdots/wallpaper/default.jpg\", height); }" > "$rasi_file"
-fi
-
 current_wallpaper='$HOME/.cache/wallpaper'
 
 case $1 in
@@ -73,64 +67,23 @@ echo ":: Wallpaper: $wallpaper"
 # ----------------------------------------------------- 
 newwall=$(echo "$wallpaper" | sed "s|$HOME/hyprdots/wallpaper/||g")
 
-# ----------------------------------------------------- 
-# Reload waybar with new colors
-# -----------------------------------------------------
-~/dotfiles/waybar/launch.sh
 
 # ----------------------------------------------------- 
 # Set the new wallpaper
 # -----------------------------------------------------
-# transition_type="wipe"
 transition_type="outer"
-# transition_type="random"
 
-#  wallpaper_engine=$(cat $HOME/hyprdots/hypr/scripts/wallpaper-engine.sh)
-# # wallpaper_engine = "hyprpaper"
-# if [ "$wallpaper_engine" == "swww" ] ;then
-#     # swww
-#     echo ":: Using swww"
     swww img "$wallpaper" \
         --transition-bezier .43,1.19,1,.4 \
         --transition-fps=144 \
         --transition-type="$transition_type" \
         --transition-duration=0.4 
-        # --transition-pos "$( hyprctl cursorpos )"
-# elif [ "$wallpaper_engine" == "hyprpaper" ] ;then
-    # hyprpaper
-    # echo ":: Using hyprpaper"
-    # killall hyprpaper
-    # wal_tpl=$(cat "$HOME"/hyprdots/hypr/scripts/hyprpaper.tpl)
-    # output=${wal_tpl//WALLPAPER/$wallpaper}
-    # echo "$output" > "$HOME"/hyprdots/hypr/hyprpaper.conf
-    # hyprpaper &
-# else
-#     echo ":: Wallpaper Engine disabled"
-# fi
 
 if [ "$1" == "init" ] ;then
     echo ":: Init"
 else
     sleep 1
- #   dunstify "Changing wallpaper ..." "with image $newwall" -h int:value:33 -h string:x-dunst-stack-tag:wallpaper
-    sleep 2
 fi
-
-# # ----------------------------------------------------- 
-# # Created blurred wallpaper
-# # -----------------------------------------------------
-# if [ "$1" == "init" ] ;then
-#     echo ":: Init"
-# else
-#     dunstify "Creating blurred version ..." "with image $newwall" -h int:value:66 -h string:x-dunst-stack-tag:wallpaper
-# fi
-#
-# magick $wallpaper -resize 75% $blurred
-# echo ":: Resized to 75%"
-# if [ ! "$blur" == "0x0" ] ;then
-#     magick $blurred -blur $blur $blurred
-#     echo ":: Blurred"
-# fi
 
 # ----------------------------------------------------- 
 # Write selected wallpaper into .cache files
@@ -138,22 +91,12 @@ fi
 echo "$wallpaper" > "$cache_file"
 rm "$HOME"/.current_wallpaper
 ln -s "$wallpaper" "$HOME"/.current_wallpaper
-matugen image "$wallpaper"
 # echo "* { current-image: url(\"$blurred\", height); }" > "$rasi_file"
 
 # ----------------------------------------------------- 
 # Send notification
 # ----------------------------------------------------- 
-#dunstify "Setting theme in waybar"
 	pkill -USR2 waybar
-#dunstify "Waybar theme set"
-#dunstify "Changing dunst theme"
-#	mkdir -p  "${HOME}/.config/dunst"
-#	ln -sf    "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
-#	pkill dunst
-#	dunst &
-#dunstify "Dunst theme changed"
-
 # --------------------------------------------------------
 # Change swaync theme
 # --------------------------------------------------------
@@ -165,18 +108,11 @@ matugen image "$wallpaper"
 # --------------------------------------------------------
 	swaymsg reload
 
-# --------------------------------------------------------
-# Change Zellij theme
-# --------------------------------------------------------
-# ~/hyprdots/hypr/scripts/zellijpywal/generate-theme.sh
-
-pywalfox update
-
 # Notify pywal work is done
 if [ "$1" == "init" ] ;then
     echo ":: Init"
 else
-    dunstify "Pywal procedure complete!"
+    notify-send "Pywal procedure complete!"
 fi
 
 echo "DONE!"

@@ -7,7 +7,7 @@ arch=('any')
 license=('GPL3')
 depends= (
 	'swayfx' 'pywal' 'kitty' 'swayosd-git' 'swaync' 'stratvim'
-	'waybar' 'superfile' 'thunar' ''
+	'waybar' 'superfile' 'thunar' 'swww' 
 	)
 
 source=('.config')
@@ -15,7 +15,7 @@ md5sums=('SKIP')
 
 package() {
 	install -d "$pkgdir/etc/skel/.config"
-	cp -r "$srcdir/.config/sway" "$pkgdir/etc/skel/.config"
+	cp -r "$srcdir/.config/" "$pkgdir/etc/skel/.config"
 	echo "Configuration files have been copied over to /etc/skel..."
 	echo "Feel free to copy these files to ~/.config/ and make any changes as you wish"
 }
