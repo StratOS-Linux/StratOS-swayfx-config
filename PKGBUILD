@@ -7,7 +7,7 @@ arch=('any')
 license=('GPL3')
 depends= (
 	'swayfx' 'pywal' 'kitty' 'swayosd-git' 'swaync' 'stratvim'
-	'waybar' 'superfile' 'thunar' 'swww' 
+	'waybar' 'superfile' 'thunar' 'swww' 'StratOS-bash-config' 'StratOS-fish-config'
 	)
 
 source=('.config')
