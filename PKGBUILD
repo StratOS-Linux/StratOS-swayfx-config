@@ -13,9 +13,10 @@ depends=(
 source=()
 md5sums=()
 
+prepare() {
+    cp -r "$startdir"/.config "$srcdir"/
+}
 package() {
-	install -d "$pkgdir/etc/skel/.config"
-	cp -r "$srcdir/.config/" "$pkgdir/etc/skel/.config"
-	echo "Configuration files have been copied over to /etc/skel..."
-	echo "Feel free to copy these files to ~/.config/ and make any changes as you wish"
+    install -d "$pkgdir"/etc/skel/.config
+    cp -ra "$srcdir"/.config/sway/ "$pkgdir"/etc/skel/.config/
 }
