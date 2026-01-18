@@ -10,8 +10,8 @@ depends=(
 	'waybar' 'superfile' 'thunar' 'swww' 'stratos-fish-config' "nwg-displays" "stratos-waybar-config"
 	)
 
-source=('.config')
-md5sums=('SKIP')
+source=()
+md5sums=()
 
 package() {
 	install -d "$pkgdir/etc/skel/.config"
