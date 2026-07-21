@@ -16,11 +16,12 @@ md5sums=()
 
 prepare() {
     cp -r "$startdir"/.config "$srcdir"/
+	cp -r "$startdir"/conky "$srcdir"/
 }
 package() {
     install -d "$pkgdir"/etc/skel/.config
     cp -ra "$srcdir"/.config/sway/ "$pkgdir"/etc/skel/.config/
     cp -ra "$srcdir"/.config/swaylock/ "$pkgdir"/etc/skel/.config/
 	cp -ra "$srcdir"/.config/vicinae/ "$pkgdir"/etc/skel/.config/
-	cp -ra "$srcdir"/.conkyrc "$pkgdir"/etc/skel/
+	cp "$srcdir"/conky/.conkyrc "$pkgdir"/etc/skel/.conkyrc
 }
