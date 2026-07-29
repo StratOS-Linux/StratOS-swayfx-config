@@ -1,12 +1,12 @@
 # Maintainer: @Slipstream8125 <slipstream8125@proton.me>
 pkgname=stratos-swayfx-config
 pkgver=1.0
-pkgrel=8
+pkgrel=9
 pkgdesc="SwayFX config for StratOS"
 arch=('any')
 license=('GPL3')
 depends=(
-	'swayfx' 'kitty' 'swayosd' 'swaync' 'stratos-eww-config' 'swaylock-effects' 'vicinae-bin'
+	'swayfx' 'kitty' 'swayosd' 'swaync'  'swaylock-effects' 'vicinae-bin'
 	'waybar' 'thunar' 'swww' 'stratos-swaync-config' 'stratos-kitty-config' 'stratos-fish-config' "nwg-displays" "stratos-waybar-swayfx-config"
 	'xdg-desktop-portal-wlr' 'conky' 'waytator'
 	)
