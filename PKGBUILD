@@ -1,7 +1,7 @@
 # Maintainer: @Slipstream8125 <slipstream8125@proton.me>
 pkgname=stratos-swayfx-config
-pkgver=1.0
-pkgrel=10
+pkgver=1.1
+pkgrel=0
 pkgdesc="SwayFX config for StratOS"
 arch=('any')
 license=('GPL3')
